@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Hi-Z Tech Solution - Data-Driven Digital Marketing Agency Lahore</title>
+    <meta name="description" content="Hi-Z Tech Solution helps businesses increase leads, sales, and online visibility through Google Ads, SEO, Social Media Marketing, and Website Development in Lahore, Pakistan.">
+    <meta name="keywords" content="digital marketing agency lahore, google ads, seo services pakistan, facebook ads, website development, social media marketing, hi-z tech solution">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Hi-Z Tech Solution - Digital Marketing Agency">
+    <meta property="og:description" content="Grow Your Business With Data-Driven Digital Marketing">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./logo.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React + ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Tailwind Config - Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#0A1628',
+                        'brand-secondary': '#1E3A5F', 
+                        'brand-accent': '#3B82F6',
+                        'brand-gold': '#F59E0B',
+                        'brand-dark': '#0F172A'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        .animate-fade-in { animation: fadeIn 0.8s ease-in; }
+        .animate-slide-up { animation: slideUp 0.6s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // Icons Component
+        const Icon = ({ name, className = "w-6 h-6" }) => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, []);
+            return <i data-lucide={name} className={className}></i>;
+        };
+
+        // Header Component
+        const Header = () => {
+            const [isOpen, setIsOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navLinks = ['Home', 'About', 'Services', 'Portfolio', 'Contact'];
+
+            return (
+                <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-brand-primary shadow-2xl' : 'bg-brand-primary/95 backdrop-blur-sm'}`}>
+                    <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between items-center h-20">
+                            <div className="flex items-center gap-3">
+                                <img src="./logo.png" alt="Hi-Z Tech Solution" className="h-12 w-auto" />
+                                <div className="hidden sm:block">
+                                    <h1 className="text-xl font-bold text-white">Hi-Z <span className="text-brand-accent">Tech</span></h1>
+                                    <p className="text-xs text-gray-400">Solution</p>
+                                </div>
+                            </div>
+                            
+                            <div className="hidden md:flex space-x-8">
+                                {navLinks.map((link) => (
+                                    <a key={link} href={`#${link.toLowerCase()}`} className="text-gray-300 hover:text-brand-accent transition-colors duration-200 font-medium">
+                                        {link}
+                                    </a>
+                                ))}
+                            </div>
+
+                            <a href="https://wa.me/923034747338" target="_blank" className="hidden md:block bg-gradient-to-r from-brand-accent to-blue-600 hover:from-blue-600 hover:to-brand-accent text-white px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+                                Get Started
+                            </a>
+
+                            <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
+                                <Icon name={isOpen ? "x" : "menu"} className="w-7 h-7" />
+                            </button>
+                        </div>
+
+                        {isOpen && (
+                            <div className="md:hidden pb-4 animate-fade-in">
+                                {navLinks.map((link) => (
+                                    <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-brand-accent transition-colors">
+                                        {link}
+                                    </a>
+                                ))}
+                                <a href="https://wa.me/923034747338" target="_blank" className="block mt-4 bg-gradient-to-r from-brand-accent to-blue-600 text-white text-center py-3 rounded-lg font-semibold">
+                                    Get Started
+                                </a>
+                            </div>
+                        )}
+                    </nav>
+                </header>
+            );
+        };
+
+        // Hero Section
+        const Hero = () => (
+            <section id="home" className="pt-32 pb-20 bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-dark text-white relative overflow-hidden">
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-brand-accent rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-gold rounded-full blur-3xl"></div>
+                </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div className="animate-fade-in">
+                            <div className="inline-block bg-brand-accent/20 text-brand-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                                #1 Digital Marketing Agency Lahore
+                            </div>
+                            <h2 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                                Grow Your Business With <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-gold">Data-Driven</span> Digital Marketing
+                            </h2>
+                            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                                Hi-Z Tech Solution helps businesses increase leads, sales, and online visibility through Google Ads, SEO, Social Media Marketing, and Website Development.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <a href="https://wa.me/923034747338?text=Hi, I need a Free Consultation for Digital Marketing" target="_blank" className="bg-gradient-to-r from-brand-accent to-blue-600 hover:shadow-2xl hover:shadow-brand-accent/50 text-white px-8 py-4 rounded-lg font-semibold text-center transition-all duration-300 hover:scale-105">
+                                    Get Free Consultation
+                                </a>
+                                <a href="https://wa.me/923034747338" target="_blank" className="glass-effect hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-lg font-semibold text-center transition-all duration-300">
+                                    WhatsApp Us
+                                </a>
+                            </div>
+                        </div>
+                        <div className="hidden md:block animate-slide-up">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Digital Marketing" className="rounded-2xl shadow-2xl border-4 border-white/10" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        // About Section
+        const About = () => (
+            <section id="about" className="py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <img src="./logo.png" alt="Hi-Z Tech Solution" className="w-64 mx-auto mb-8 drop-shadow-2xl" />
+                        </div>
+                        <div>
+                            <h2 className="text-4xl font-bold text-brand-primary mb-4">About Hi-Z Tech Solution</h2>
+                            <div className="w-20 h-1 bg-gradient-to-r from-brand-accent to-brand-gold mb-8"></div>
+                            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                                Hi-Z Tech Solution is a results-driven digital marketing agency based in Lahore, Pakistan. We help startups, local businesses, and growing brands achieve measurable growth through innovative digital marketing strategies and professional web solutions.
+                            </p>
+                            <div className="flex gap-4">
+                                <div className="text-center">
+                                    <h3 className="text-3xl font-bold text-brand-accent">100+</h3>
+                                    <p className="text-gray-600 text-sm">Projects Done</p>
+                                </div>
+                                <div className="text-center">
+                                    <h3 className="text-3xl font-bold text-brand-accent">50+</h3>
+                                    <p className="text-gray-600 text-sm">Happy Clients</p>
+                                </div>
+                                <div className="text-center">
+                                    <h3 className="text-3xl font-bold text-brand-accent">5+</h3>
+                                    <p className="text-gray-600 text-sm">Years Experience</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        // Services Section
+        const Services = () => {
+            const services = [
+                { icon: 'search', title: 'Google Ads Management', desc: 'Maximize ROI with expertly managed PPC campaigns that drive targeted traffic and conversions.' },
+                { icon: 'facebook', title: 'Facebook & Instagram Ads', desc: 'Engage your audience with compelling social media ads that convert followers into customers.' },
+                { icon: 'trending-up', title: 'Search Engine Optimization', desc: 'Rank higher on Google with proven SEO strategies that increase organic traffic.' },
+                { icon: 'code', title: 'Website Development', desc: 'Build fast, responsive, and SEO-optimized websites that represent your brand perfectly.' },
+                { icon: 'shopping-cart', title: 'E-Commerce Solutions', desc: 'Launch and scale your online store with complete e-commerce development and marketing.' },
+                { icon: 'share-2', title: 'Social Media Marketing', desc: 'Grow your brand presence with strategic content and community management.' },
+                { icon: 'palette', title: 'Graphic Design', desc: 'Professional branding, logos, and marketing materials that make you stand out.' },
+                { icon: 'target', title: 'Lead Generation', desc: 'Get qualified leads with data-driven campaigns across multiple channels.' }
+            ];
+
+            return (
+                <section id="services" className="py-20 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-brand-primary mb-4">Our Services</h2>
+                            <div className="w-20 h-1 bg-gradient-to-r from-brand-accent to-brand-gold mx-auto"></div>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {services.map((service, idx) => (
+                                <div key={idx} className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-brand-accent group">
+                                    <div className="w-14 h-14 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <Icon name={service.icon} className="w-7 h-7 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-brand-primary mb-3">{service.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed">{service.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Why Choose Us
+        const WhyChooseUs = () => {
+            const features = [
+                { icon: 'users', title: 'Experienced Team', desc: 'Certified professionals with years of industry experience' },
+                { icon: 'dollar-sign', title: 'Affordable Pricing', desc: 'Premium services at competitive rates for all business sizes' },
+                { icon: 'zap', title: 'Fast Support', desc: '24/7 dedicated support and quick response times' },
+                { icon: 'award', title: 'Proven Results', desc: 'Track record of delivering measurable growth for clients' },
+                { icon: 'eye', title: 'Transparent Reporting', desc: 'Clear monthly reports with real-time dashboard access' },
+                { icon: 'settings', title: 'Customized Strategies', desc: 'Tailored solutions designed specifically for your business' }
+            ];
+
+            return (
+                <section className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-brand-primary mb-4">Why Choose Us</h2>
+                            <div className="w-20 h-1 bg-gradient-to-r from-brand-accent to-brand-gold mx-auto"></div>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {features.map((feature, idx) => (
+                                <div key={idx} className="flex gap-4 p-6 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:shadow-lg">
+                                    <div className="flex-shrink-0">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center">
+                                            <Icon name={feature.icon} className="w-6 h-6 text-white" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-bold text-brand-primary mb-2">{feature.title}</h3>
+                                        <p className="text-gray-600">{feature.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Portfolio
+        const Portfolio = () => {
+            const projects = [
+                { img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop', title: 'E-Commerce Growth', cat: 'Google Ads' },
+                { img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop', title: 'Social Media Campaign', cat: 'Facebook Ads' },
+                { img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop', title: 'SEO Success Story', cat: 'SEO' },
+                { img: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=300&fit=crop', title: 'Website Redesign', cat: 'Web Development' },
+                { img: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop', title: 'Brand Identity', cat: 'Graphic Design' },
+                { img: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop', title: 'Lead Generation', cat: 'Lead Gen' }
+            ];
+
+            return (
+                <section id="portfolio" className="py-20 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-brand-primary mb-4">Our Portfolio</h2>
+                            <div className="w-20 h-1 bg-gradient-to-r from-brand-accent to-brand-gold mx-auto"></div>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {projects.map((project, idx) => (
+                                <div key={idx} className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                                    <img src={project.img} alt={project.title} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/95 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                        <div>
+                                            <p className="text-brand-accent text-sm font-semibold mb-1">{project.cat}</p>
+                                            <h3 className="text-white text-xl font-bold">{project.title}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Testimonials
+        const Testimonials = () => {
+            const testimonials = [
+                { name: 'Ahmed Khan', role: 'CEO, Fashion Store', text: 'Hi-Z Tech Solution transformed our online presence. Our sales increased by 300% in just 4 months!', img: 'https://i.pravatar.cc/150?img=12' },
+                { name: 'Sara Ali', role: 'Founder, Beauty Brand', text: 'Professional team with excellent communication. Their Google Ads strategy gave us amazing ROI.', img: 'https://i.pravatar.cc/150?img=5' },
+                { name: 'Bilal Hassan', role: 'Director, Real Estate', text: 'Best digital marketing agency in Lahore. Transparent reporting and real results. Highly recommended!', img: 'https://i.pravatar.cc/150?img=8' }
+            ];
+
+            return (
+                <section className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-brand-primary mb-4">Client Testimonials</h2>
+                            <div className="w-20 h-1 bg-gradient-to-r from-brand-accent to-brand-gold mx-auto"></div>
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {testimonials.map((testimonial, idx) => (
+                                <div key={idx} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-xl border-2 border-gray-100 hover:border-brand-accent transition-all duration-300 hover:shadow-xl">
+                                    <div className="flex items-center mb-4">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Icon key={i} name="star" className="w-5 h-5 text-brand-gold fill-current" />
+                                        ))}
+                                    </div>
+                                    <p className="text-gray-700 mb-6 italic leading-relaxed">"{testimonial.text}"</p>
+                                    <div className="flex items-center gap-4">
+                                        <img src={testimonial.img} alt={testimonial.name} className="w-12 h-12 rounded-full border-2 border-brand-accent" />
+                                        <div>
+                                            <h4 className="font-bold text-brand-primary">{testimonial.name}</h4>
+                                            <p className="text-sm text-gray-600">{testimonial.role}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Contact Section
+        const Contact = () => (
+            <section id="contact" className="py-20 bg-gray-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl font-bold text-brand-primary mb-4">Get In Touch</h2>
+                        <div className="w-20 h-1 bg-gradient-to-r from-brand-accent to-brand-gold mx-auto"></div>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-12">
+                        <div className="space-y-8">
+                            <div>
+                                <h3 className="text-2xl font-bold text-brand-primary mb-6">Contact Information</h3>
+                                <div className="space-y-4">
+                                    <div className="flex items-start gap-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Icon name="building-2" className="w-6 h-6 text-white" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-brand-primary mb-1">Business Name</h4>
+                                            <p className="text-gray-600">Hi-Z Tech Solution</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Icon name="phone" className="w-6 h-6 text-white" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-brand-primary mb-1">Phone</h4>
+                                            <a href="tel:+923034747338" className="text-gray-600 hover:text-brand-accent">+92 303 4747338</a>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Icon name="message-circle" className="w-6 h-6 text-white" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-brand-primary mb-1">WhatsApp</h4>
+                                            <a href="https://wa.me/923034747338" target="_blank" className="text-gray-600 hover:text-brand-accent">+92 303 4747338</a>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-brand-accent to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Icon name="map-pin" className="w-6 h-6 text-white" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-brand-primary mb-1">Address</h4>
+                                            <p className="text-gray-600">2nd Floor, Asif Building, 97 McLeod Road, Opposite Saver Foods, Lahore, Pakistan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white p-8 rounded-xl shadow-xl border-t-4 border-brand-accent">
+                            <h3 className="text-2xl font-bold text-brand-primary mb-6">Send Us A Message</h3>
+                            <form onSubmit={(e) => {e.preventDefault(); window.open('https://wa.me/923034747338?text=Hi, I want to discuss my project', '_blank');}} className="space-y-6">
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                                    <input type="text" required className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-accent focus:border-brand-accent outline-none transition" placeholder="John Doe" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                                    <input type="email" required className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-accent focus:border-brand-accent outline-none transition" placeholder="john@example.com" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                                    <input type="tel" required className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-accent focus:border-brand-accent outline-none transition" placeholder="+92 300 1234567" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                                    <textarea rows="4" required className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-accent focus:border-brand-accent outline-none transition resize-none" placeholder="Tell us about your project..."></textarea>
+                                </div>
+                                <button type="submit" className="w-full bg-gradient-to-r from-brand-accent to-blue-600 hover:shadow-2xl hover:shadow-brand-accent/50 text-white py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
+                                    Send Message via WhatsApp
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        // Footer
+        const Footer = () => (
+            <footer className="bg-brand-primary text-white py-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-4 gap-8 mb-8">
+                        <div>
+                            <img src="./logo.png" alt="Hi-Z Tech Solution" className="h-16 mb-4" />
+                            <p className="text-gray-400">Data-driven digital marketing solutions for modern businesses.</p>
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-lg mb-4 text-brand-accent">Quick Links</h4>
+                            <ul className="space-y-2">
+                                {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map((link) => (
+                                    <li key={link}>
+                                        <a href={`#${link.toLowerCase()}`} className="text-gray-400 hover:text-white transition-colors">{link}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-lg mb-4 text-brand-accent">Contact</h4>
+                            <ul className="space-y-2 text-gray-400">
+                                <li>Phone: +92 303 4747338</li>
+                                <li>WhatsApp: +92 303 4747338</li>
+                                <li className="pt-2">2nd Floor, Asif Building<br/>97 McLeod Road, Lahore</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-lg mb-4 text-brand-accent">Follow Us</h4>
+                            <div className="flex gap-4">
+                                {['facebook', 'instagram', 'linkedin', 'message-circle'].map((social) => (
+                                    <a key={social} href="https://wa.me/923034747338" target="_blank" className="w-10 h-10 bg-white/10 hover:bg-brand-accent rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                                        <Icon name={social} className="w-5 h-5" />
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
+                        <p>&copy; 2026 Hi-Z Tech Solution. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        // WhatsApp Floating Button
+        const WhatsAppButton = () => (
+            <a href="https://wa.me/923034747338" target="_blank" className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 z-50 animate-pulse">
+                <Icon name="message-circle" className="w-8 h-8 text-white" />
+            </a>
+        );
+
+        // Main App
+        const App = () => (
+            <div className="font-sans antialiased">
+                <Header />
+                <Hero />
+                <About />
+                <Services />
+                <WhyChooseUs />
+                <Portfolio />
+                <Testimonials />
+                <Contact />
+                <Footer />
+                <WhatsAppButton />
+            </div>
+        );
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
