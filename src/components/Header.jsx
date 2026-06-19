@@ -54,9 +54,7 @@ export default function Header() {
             onClick={(e) => { e.preventDefault(); handleNavClick('#home') }}
             className="flex items-center gap-3 group"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-shadow">
-              HZ
-            </div>
+            <img src="/logo.png" alt="HiZTech Solution" className="h-10 w-auto rounded-lg" />
             <div className="hidden sm:block">
               <span className="text-white font-bold text-lg leading-none block">Hi-Z Tech</span>
               <span className="text-blue-400 text-xs font-medium tracking-widest uppercase">Solution</span>
