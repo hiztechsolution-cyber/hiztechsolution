@@ -1,66 +1,371 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HizTech Solution - Digital Marketing Lahore</title>
-    <meta name="description" content="HizTech Solution - Google Ads, SEO, Facebook Ads Agency in Lahore, Pakistan">
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Arial', sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 50px 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 700px;
-        }
-        h1 { font-size: 48px; margin-bottom: 10px; }
-        h2 { font-size: 24px; margin-bottom: 20px; font-weight: 400; }
-        p { font-size: 18px; line-height: 1.6; margin-bottom: 30px; }
-        .btn {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 18px;
-            margin: 10px;
-        }
-        .footer { margin-top: 40px; font-size: 14px; opacity: 0.8; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🚀 HizTech Solution</h1>
-        <h2>Digital Marketing Agency Lahore</h2>
-        
-        <p>
-            We help Pakistani businesses grow online with <br>
-            Google Ads, SEO Services, Facebook Ads & Website Development
-        </p>
-        
-        <a href="mailto:info@hiztechpk.com" class="btn">Contact Us</a>
-        <a href="https://wa.me/923001234567" class="btn">WhatsApp</a>
-        
-        <div class="footer">
-            📍  97 Mcloard Rd Opposite Saver Food Luckshami Chowk, Lahore, Pakistan<br>
-            📧 info@hiztechpk.com | 🌐 hiztechpk.com
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  FaGoogle, FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp,
+  FaSearch, FaLaptopCode, FaShoppingCart, FaBullhorn, FaPalette, FaChartLine,
+  FaUsers, FaDollarSign, FaHeadset, FaTrophy, FaChartBar, FaCogs,
+  FaBars, FaTimes, FaPhone, FaMapMarkerAlt, FaEnvelope, FaStar
+} from 'react-icons/fa';
+
+function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.title = "Hi-Z Tech Solution - Digital Marketing Agency Lahore";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.name = 'description';
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.content = "Hi-Z Tech Solution helps businesses increase leads, sales & online visibility through Google Ads, SEO, Social Media Marketing & Website Development in Lahore, Pakistan";
+  }, []);
+
+  const services = [
+    { icon: <FaGoogle size={40} />, title: "Google Ads Management", desc: "Get instant leads with ROI-focused Google Ads campaigns managed by certified experts." },
+    { icon: <FaFacebook size={40} />, title: "Facebook & Instagram Ads", desc: "High-converting social media ads to reach millions of targeted customers daily." },
+    { icon: <FaSearch size={40} />, title: "Search Engine Optimization", desc: "Rank #1 on Google organically and get free, consistent traffic to your website." },
+    { icon: <FaLaptopCode size={40} />, title: "Website Development", desc: "Modern, fast, mobile-friendly websites that convert visitors into paying customers." },
+    { icon: <FaShoppingCart size={40} />, title: "E-Commerce Solutions", desc: "Complete Shopify & WooCommerce stores with payment gateway integration." },
+    { icon: <FaBullhorn size={40} />, title: "Social Media Marketing", desc: "Build your brand presence and engage customers across all social platforms." },
+    { icon: <FaPalette size={40} />, title: "Graphic Design", desc: "Eye-catching logos, banners, and social media posts that make your brand stand out." },
+    { icon: <FaChartLine size={40} />, title: "Lead Generation", desc: "Quality leads for your business through proven digital funnels and automation." },
+  ];
+
+  const whyChoose = [
+    { icon: <FaUsers size={30} />, title: "Experienced Team", desc: "5+ years of expertise in digital marketing & web development." },
+    { icon: <FaDollarSign size={30} />, title: "Affordable Pricing", desc: "Premium services at competitive rates for Pakistani businesses." },
+    { icon: <FaHeadset size={30} />, title: "Fast Support", desc: "24/7 customer support via WhatsApp, call & email." },
+    { icon: <FaTrophy size={30} />, title: "Proven Results", desc: "200+ successful campaigns with measurable ROI for clients." },
+    { icon: <FaChartBar size={30} />, title: "Transparent Reporting", desc: "Monthly detailed reports with complete campaign insights." },
+    { icon: <FaCogs size={30} />, title: "Customized Strategies", desc: "Tailored marketing plans based on your business goals." },
+  ];
+
+  const portfolio = [
+    { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500", title: "E-commerce Growth", desc: "300% increase in online sales" },
+    { img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500", title: "SEO Campaign", desc: "Ranked #1 for 15+ keywords" },
+    { img: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=500", title: "Google Ads Success", desc: "5x ROAS for fashion brand" },
+    { img: "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=500", title: "Website Redesign", desc: "70% increase in conversions" },
+    { img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500", title: "Social Media Growth", desc: "50K+ followers in 6 months" },
+    { img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500", title: "Lead Generation", desc: "500+ qualified leads/month" },
+  ];
+
+  const testimonials = [
+    { name: "Ahmad Khan", company: "Fashion Store Owner", rating: 5, text: "Hi-Z Tech Solution ne hamari sales 3 months me double kar di. Google Ads ka ROI zabardast hai!", img: "https://i.pravatar.cc/100?img=12" },
+    { name: "Sarah Ali", company: "Restaurant CEO", rating: 5, text: "Best SEO service in Lahore. Ab hum Google par #1 rank kar rahe hain. Highly recommended!", img: "https://i.pravatar.cc/100?img=5" },
+    { name: "Usman Sheikh", company: "Real Estate Agent", rating: 5, text: "Professional team, transparent reporting, aur fast support. Facebook leads ki quality amazing hai.", img: "https://i.pravatar.cc/100?img=33" },
+  ];
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <div className="bg-white text-gray-800">
+      <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-primary shadow-lg py-3' : 'bg-transparent py-5'}`}>
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="Hi-Z Tech Solution" className="w-10 h-10" />
+            <h1 className={`text-2xl font-bold ${isScrolled ? 'text-white' : 'text-primary'}`}>Hi-Z Tech Solution</h1>
+          </div>
+          
+          <nav className="hidden md:flex gap-8 items-center">
+            {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map(item => (
+              <button key={item} onClick={() => scrollToSection(item.toLowerCase())} 
+                className={`font-medium hover:text-secondary transition ${isScrolled ? 'text-white' : 'text-primary'}`}>
+                {item}
+              </button>
+            ))}
+            <a href="https://wa.me/923034747338" target="_blank" rel="noopener noreferrer" 
+              className="bg-secondary text-white px-6 py-2 rounded-full hover:bg-accent transition">
+              Get Quote
+            </a>
+          </nav>
+
+          <button className={`md:hidden ${isScrolled ? 'text-white' : 'text-primary'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
         </div>
+
+        {isMenuOpen && (
+          <div className="md:hidden bg-primary text-white px-4 py-4">
+            {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map(item => (
+              <button key={item} onClick={() => scrollToSection(item.toLowerCase())} 
+                className="block w-full text-left py-3 border-b border-gray-700">
+                {item}
+              </button>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <section id="home" className="pt-32 pb-20 px-4 bg-gradient-to-br from-primary via-primary to-secondary text-white">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Grow Your Business With <span className="text-accent">Data-Driven</span> Digital Marketing
+            </h1>
+            <p className="text-xl mb-8 text-gray-200">
+              Hi-Z Tech Solution helps businesses increase leads, sales, and online visibility through Google Ads, SEO, Social Media Marketing, and Website Development.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="#contact" className="bg-white text-primary px-8 py-4 rounded-full font-bold hover:scale-105 transition">
+                Get Free Consultation
+              </a>
+              <a href="https://wa.me/923034747338" target="_blank" rel="noopener noreferrer" 
+                className="bg-green-500 text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition flex items-center gap-2">
+                <FaWhatsapp /> WhatsApp Us
+              </a>
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="animate-float">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600" alt="Digital Marketing" className="rounded-2xl shadow-2xl" />
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="about" className="py-20 px-4">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <motion.img initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600" 
+            alt="About Hi-Z Tech" className="rounded-2xl shadow-xl" />
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-4xl font-bold text-primary mb-6">About Hi-Z Tech Solution</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Hi-Z Tech Solution is a results-driven digital marketing agency based in Lahore, Pakistan. We help startups, local businesses, and growing brands achieve measurable growth through innovative digital marketing strategies and professional web solutions.
+            </p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="text-3xl font-bold text-secondary">200+</h3>
+                <p className="text-gray-600">Projects Completed</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="text-3xl font-bold text-secondary">98%</h3>
+                <p className="text-gray-600">Client Satisfaction</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="services" className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-primary mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600">Complete digital solutions to grow your business online</p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, idx) => (
+              <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
+                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300">
+                <div className="text-secondary mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold text-primary mb-3">{service.title}</h3>
+                <p className="text-gray-600">{service.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-primary mb-4">Why Choose Us</h2>
+            <p className="text-xl text-gray-600">Your success is our priority</p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyChoose.map((item, idx) => (
+              <motion.div key={idx} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} 
+                viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
+                className="flex gap-4 p-6 bg-gray-50 rounded-xl hover:bg-secondary hover:text-white transition duration-300 group">
+                <div className="text-secondary group-hover:text-white">{item.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-gray-600 group-hover:text-gray-100">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-primary mb-4">Our Portfolio</h2>
+            <p className="text-xl text-gray-600">Recent projects that delivered real results</p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {portfolio.map((project, idx) => (
+              <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
+                <img src={project.img} alt={project.title} className="w-full h-56 object-cover group-hover:scale-110 transition duration-500" />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-primary mb-2">{project.title}</h3>
+                  <p className="text-secondary font-semibold">{project.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-primary mb-4">Client Testimonials</h2>
+            <p className="text-xl text-gray-600">What our clients say about us</p>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, idx) => (
+              <motion.div key={idx} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
+                className="bg-white p-8 rounded-xl shadow-lg">
+                <div className="flex gap-1 mb-4 text-yellow-500">
+                  {[...Array(testimonial.rating)].map((_, i) => <FaStar key={i} />)}
+                </div>
+                <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
+                <div className="flex items-center gap-4">
+                  <img src={testimonial.img} alt={testimonial.name} className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h4 className="font-bold text-primary">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-500">{testimonial.company}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-primary mb-4">Get In Touch</h2>
+            <p className="text-xl text-gray-600">Let's discuss your project today</p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-12">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <h3 className="text-2xl font-bold text-primary mb-6">Contact Information</h3>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <FaPhone className="text-secondary mt-1" size={20} />
+                  <div>
+                    <h4 className="font-bold">Phone</h4>
+                    <p className="text-gray-600">+92 303 4747338</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <FaWhatsapp className="text-secondary mt-1" size={20} />
+                  <div>
+                    <h4 className="font-bold">WhatsApp</h4>
+                    <p className="text-gray-600">+92 303 4747338</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <FaMapMarkerAlt className="text-secondary mt-1" size={20} />
+                  <div>
+                    <h4 className="font-bold">Address</h4>
+                    <p className="text-gray-600">2nd Floor, Asif Building, 97 McLeod Road, Opposite Saver Foods, Lahore, Pakistan</p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-8">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3400.0000000000005!2d74.3089!3d31.5204!2m3!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDMxJzEzLjQiTiA3NMKwMTgnMzIuMCJF!5e0!3m2!1sen!2s!4v1234567890"
+                  width="100%" height="250" style={{ border: 0 }} allowFullScreen="" loading="lazy" 
+                  className="rounded-lg" title="Google Map">
+                </iframe>
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <form className="bg-white p-8 rounded-xl shadow-lg">
+                <h3 className="text-2xl font-bold text-primary mb-6">Send Us A Message</h3>
+                <div className="space-y-4">
+                  <input type="text" placeholder="Your Name" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary" />
+                  <input type="email" placeholder="Your Email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary" />
+                  <input type="tel" placeholder="Your Phone" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary" />
+                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary">
+                    <option>Select Service</option>
+                    <option>Google Ads</option>
+                    <option>SEO</option>
+                    <option>Social Media Marketing</option>
+                    <option>Website Development</option>
+                  </select>
+                  <textarea placeholder="Your Message" rows="4" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary"></textarea>
+                  <button type="submit" className="w-full bg-secondary text-white py-4 rounded-lg font-bold hover:bg-accent transition">
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-primary text-white py-12 px-4">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/logo.png" alt="Hi-Z Tech" className="w-10 h-10" />
+              <h3 className="text-2xl font-bold">Hi-Z Tech Solution</h3>
+            </div>
+            <p className="text-gray-300">Results-driven digital marketing agency in Lahore, Pakistan.</p>
+          </div>
+          <div>
+            <h4 className="text-xl font-bold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map(link => (
+                <li key={link}><button onClick={() => scrollToSection(link.toLowerCase())} className="text-gray-300 hover:text-white">{link}</button></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-xl font-bold mb-4">Contact Info</h4>
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-center gap-2"><FaPhone /> +92 303 4747338</li>
+              <li className="flex items-center gap-2"><FaWhatsapp /> +92 303 4747338</li>
+              <li className="flex items-start gap-2"><FaMapMarkerAlt className="mt-1" /> 2nd Floor, Asif Building, 97 McLeod Road, Lahore</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-xl font-bold mb-4">Follow Us</h4>
+            <div className="flex gap-4">
+              <a href="#" className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-accent transition"><FaFacebook /></a>
+              <a href="#" className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-accent transition"><FaInstagram /></a>
+              <a href="#" className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-accent transition"><FaLinkedin /></a>
+              <a href="https://wa.me/923034747338" className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-accent transition"><FaWhatsapp /></a>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
+          <p>© 2026 Hi-Z Tech Solution. All Rights Reserved.</p>
+        </div>
+      </footer>
+
+      <a href="https://wa.me/923034747338" target="_blank" rel="noopener noreferrer" 
+        className="fixed bottom-6 right-6 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition z-50 animate-float">
+        <FaWhatsapp size={32} />
+      </a>
     </div>
-</body>
-</html>
+  );
+                npm start
+                git init
+git add .
+git commit -m "Hi-Z Tech Solution React Site"
+git remote add origin https://github.com/yourusername/hiztech-solution.git
+git push -u origin main
+}
+
+export default App;
