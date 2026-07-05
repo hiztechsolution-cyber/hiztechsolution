@@ -1,5 +1,9 @@
 {
+  "build": {
+    "outDir": "dist"
+  },
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" }
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
